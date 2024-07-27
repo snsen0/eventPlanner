@@ -1,37 +1,75 @@
-import { DarkTheme, DefaultTheme, ThemeProvider } from '@react-navigation/native';
-import { useFonts } from 'expo-font';
-import { Stack } from 'expo-router';
-import * as SplashScreen from 'expo-splash-screen';
-import { useEffect } from 'react';
-import 'react-native-reanimated';
+import "react-native-gesture-handler";
 
-import { useColorScheme } from '@/hooks/useColorScheme';
+import { GestureHandlerRootView } from "react-native-gesture-handler";
+import { Drawer } from "expo-router/drawer";
+import { Ionicons } from "@expo/vector-icons";
+import CustomDrawer from "../components/customDrawer";
 
-// Prevent the splash screen from auto-hiding before asset loading is complete.
-SplashScreen.preventAutoHideAsync();
-
-export default function RootLayout() {
-  const colorScheme = useColorScheme();
-  const [loaded] = useFonts({
-    SpaceMono: require('../assets/fonts/SpaceMono-Regular.ttf'),
-  });
-
-  useEffect(() => {
-    if (loaded) {
-      SplashScreen.hideAsync();
-    }
-  }, [loaded]);
-
-  if (!loaded) {
-    return null;
-  }
-
+export default function Layout() {
   return (
-    <ThemeProvider value={colorScheme === 'dark' ? DarkTheme : DefaultTheme}>
-      <Stack>
-        <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
-        <Stack.Screen name="+not-found" />
-      </Stack>
-    </ThemeProvider>
+    <GestureHandlerRootView style={{ flex: 1 }}>
+      <Drawer
+        drawerContent={(props) => (
+          <CustomDrawer
+            {...props}
+            imageSource={require("../assets/image/profilePhoto.png")}
+            // imageStyle={{width: 80}}
+            // backgroundColors = ['#fceed6', '#ffecb3'],
+            // textStyle={styles.}
+          />
+        )}
+        screenOptions={{
+          // drawerHideStatusBarOnOpen: true,
+          drawerActiveBackgroundColor: "#FFEDCC",
+          drawerActiveTintColor: "#0F0E0E",
+        }}
+      >
+        <Drawer.Screen
+          name="index"
+          options={{
+            drawerLabel: "Etkinlik",
+            drawerLabelStyle: { color: "#0F0E0E" },
+            title: "",
+            drawerIcon: ({ size }) => (
+              <Ionicons name="calendar-outline" size={size} color={"#0F0E0E"} />
+            ),
+          }}
+        />
+        <Drawer.Screen
+          name="profil"
+          options={{
+            drawerLabel: "Profil",
+            drawerLabelStyle: { color: "#0F0E0E" },
+            title: "",
+          }}
+        />
+        <Drawer.Screen
+          name="takvim"
+          options={{
+            drawerLabel: "Takvim",
+            drawerLabelStyle: { color: "#0F0E0E" },
+            title: "",
+            drawerIcon: ({ size }) => (
+              <Ionicons
+                name="calendar-number-outline"
+                size={size}
+                color={"#0F0E0E"}
+              />
+            ),
+          }}
+        />
+        <Drawer.Screen
+          name="bilet"
+          options={{
+            drawerLabel: "Bilet",
+            drawerLabelStyle: { color: "#0F0E0E" },
+            title: "",
+            drawerIcon: ({ size }) => (
+              <Ionicons name="ticket-outline" size={size} color={"#0F0E0E"} />
+            ),
+          }}
+        />
+      </Drawer>
+    </GestureHandlerRootView>
   );
 }
