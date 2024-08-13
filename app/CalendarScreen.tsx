@@ -1,6 +1,6 @@
 import { Button, Text, View } from "react-native";
 
-export default function Index() {
+export default function CalendarScreen() {
   return (
     <View
       style={{
@@ -9,7 +9,7 @@ export default function Index() {
         alignItems: "center",
       }}
     >
-      <Text>Profil</Text>
+      <Text>Takvim Sayfası</Text>
     </View>
   );
 }

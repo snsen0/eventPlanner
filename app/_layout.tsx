@@ -4,6 +4,7 @@ import { GestureHandlerRootView } from "react-native-gesture-handler";
 import { Drawer } from "expo-router/drawer";
 import { Ionicons } from "@expo/vector-icons";
 import CustomDrawer from "../components/customDrawer";
+import ColorTheme from "../constants/themes";
 
 export default function Layout() {
   return (
@@ -13,59 +14,51 @@ export default function Layout() {
           <CustomDrawer
             {...props}
             imageSource={require("../assets/image/profilePhoto.png")}
-            // imageStyle={{width: 80}}
             // backgroundColors = ['#fceed6', '#ffecb3'],
-            // textStyle={styles.}
+            // textStyle
           />
         )}
         screenOptions={{
           // drawerHideStatusBarOnOpen: true,
-          drawerActiveBackgroundColor: "#FFEDCC",
-          drawerActiveTintColor: "#0F0E0E",
+          drawerActiveBackgroundColor: ColorTheme.colors.colorMenu,
+          drawerActiveTintColor: ColorTheme.colors.text1,
+          // headerShown: false,
         }}
       >
         <Drawer.Screen
           name="index"
           options={{
             drawerLabel: "Etkinlik",
-            drawerLabelStyle: { color: "#0F0E0E" },
-            title: "",
+            drawerLabelStyle: { color: ColorTheme.colors.text1 },
+            // headerShown: false,
             drawerIcon: ({ size }) => (
-              <Ionicons name="calendar-outline" size={size} color={"#0F0E0E"} />
+              <Ionicons name="calendar-outline" size={size} color={ColorTheme.colors.text1} />
             ),
           }}
         />
         <Drawer.Screen
-          name="profil"
-          options={{
-            drawerLabel: "Profil",
-            drawerLabelStyle: { color: "#0F0E0E" },
-            title: "",
-          }}
-        />
-        <Drawer.Screen
-          name="takvim"
+          name="CalendarScreen"
           options={{
             drawerLabel: "Takvim",
-            drawerLabelStyle: { color: "#0F0E0E" },
-            title: "",
+            drawerLabelStyle: { color: ColorTheme.colors.text1 },
+            // headerShown: false,
             drawerIcon: ({ size }) => (
               <Ionicons
                 name="calendar-number-outline"
                 size={size}
-                color={"#0F0E0E"}
+                color={ColorTheme.colors.text1}
               />
             ),
           }}
         />
         <Drawer.Screen
-          name="bilet"
+          name="TicketScreen"
           options={{
             drawerLabel: "Bilet",
-            drawerLabelStyle: { color: "#0F0E0E" },
-            title: "",
+            drawerLabelStyle: { color: ColorTheme.colors.text1 },
+            // headerShown: false,
             drawerIcon: ({ size }) => (
-              <Ionicons name="ticket-outline" size={size} color={"#0F0E0E"} />
+              <Ionicons name="ticket-outline" size={size} color={ColorTheme.colors.text1} />
             ),
           }}
         />
